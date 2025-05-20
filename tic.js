@@ -110,11 +110,16 @@ function checkWin(sign, gracz){
             }
         }
      }
-    //squaresFactory();
+   const start = document.querySelector('.start');
+   start.addEventListener('click', () => {
+        container.innerHTML = '';
+        board = gameBoard.displayBoard();
+        squaresFactory();
+   })
     const restart = document.querySelector('.restart');
         restart.addEventListener('click', () => {
             container.innerHTML = '';
-            board = gameBoard.displayBoard()
+            board = gameBoard.displayBoard();
             squaresFactory();
         })
     

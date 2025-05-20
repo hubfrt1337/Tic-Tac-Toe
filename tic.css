@@ -77,7 +77,11 @@ section{
     justify-content: center;
     align-items: center;
     font-size: 5rem;
-    color: black
+    color: black;
+    cursor: pointer;
+}
+.square:hover{
+    background-color: rgb(214, 214, 214);
 }
 .square00,
 .square01,
