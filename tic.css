@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+}
+main{
+    height: 100vh;
+    background: #2A7B9B;
+    background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+.main-changep1{
+    background: linear-gradient(90deg,rgb(144, 219, 249) 0%, rgba(87, 199, 133, 1) 50%, rgb(124, 116, 43) 100%);
+}
+.main-changep2{
+    background: linear-gradient(90deg,rgb(27, 48, 57) 0%, rgba(87, 199, 133, 1) 50%, rgb(255, 238, 89) 100%);
+}
+header{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: #2A7B9B;
+    background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, rgba(31, 3, 3, 1) 100%, rgba(237, 221, 83, 1) 100%);
+    color: white;
+    font-weight: bold;
+    font-size: 3rem;
+}
+section{
+    display: grid;
+    grid-template: 3fr 40px / 250px 400px 250px;
+    margin: auto;
+    gap: 20px;
+    }
+
+.grid-container{
+    display: grid;
+    margin-top: 30px;
+    }
+
+.btn-flex{
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.start, 
+.restart{
+    padding: 10px 15px;
+    color: white;
+    background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, rgba(31, 3, 3, 1) 100%, rgba(237, 221, 83, 1) 100%);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.start:hover,
+.restart:hover{
+    background: radial-gradient(circle,rgb(63, 183, 230) 0%, rgb(42, 5, 5) 100%, rgba(237, 221, 83, 1) 100%);
+    border: 2px solid white;
+}
+.container{
+    grid-area: 1 / 2 / 2 / 3;
+    width: 400px;
+    height: 350px;
+    background-color: rgba(245, 245, 245, 1);
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    
+}
+.square{
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: black
+}
+.square00,
+.square01,
+.square02{
+    border-top: none;
+}
+.square20,
+.square21,
+.square22{
+    border-bottom: none;
+}
+.square00,
+.square10,
+.square20{
+    border-left: none;
+}
+.square02,
+.square12,
+.square22{
+    border-right: none;
+}
+.play1,
+.play2{
+    justify-items: center;
+    align-items: center;
+}
+.text{
+    color:  black;
+    font-weight: bold;
+    font-size: 1rem;
+}
+input{
+    display: block;
+    margin-top: 0.5rem;
+    width: 150px;
+}
