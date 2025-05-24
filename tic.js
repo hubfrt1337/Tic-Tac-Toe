@@ -73,7 +73,7 @@ function checkWin(sign, gracz){
         } else if(board.board[0][1] === sign & board.board[1][1] === sign & board.board[2][1] === sign){
             console.log(`Wygrywa  ${gracz}`);
             return true;
-        } else if(board.board[0][2] === sign & board.board[1][1] === sign & board.board[2][2] === sign){
+        } else if(board.board[0][2] === sign & board.board[1][2] === sign & board.board[2][2] === sign){
             console.log(`Wygrywa ${gracz}`);
             return true;
         }
@@ -110,16 +110,52 @@ function checkWin(sign, gracz){
             }
         }
      }
+    const name1 = document.querySelector('.after-js')
+    const name2 = document.querySelector('.after2-js')
    const start = document.querySelector('.start');
+
    start.addEventListener('click', () => {
-        container.innerHTML = '';
-        board = gameBoard.displayBoard();
-        squaresFactory();
-   })
-    const restart = document.querySelector('.restart');
-        restart.addEventListener('click', () => {
+        const inputplayer1 = document.querySelector('.play1-js');
+        const inputplayer2 = document.querySelector('.play2-js');
+        const squares = document.querySelectorAll('.square');
+        if(inputplayer1.value !== '' & inputplayer2.value !== ''){
+            squares.forEach((box) => {
+                box.classList.add('fade-out');
+                
+            })
+            setTimeout(() => {
+            name1.innerText = inputplayer1.value;
+            name2.innerText = inputplayer2.value;
+            inputplayer1.classList.add('hide');
+            inputplayer2.classList.add('hide');
             container.innerHTML = '';
             board = gameBoard.displayBoard();
             squaresFactory();
+        
+    }, 1000) 
+    }
+   })
+    
+    const restart = document.querySelector('.restart');
+        restart.addEventListener('click', () => {
+            const inputplayer1 = document.querySelector('.play1-js');
+            const inputplayer2 = document.querySelector('.play2-js');
+            const squares = document.querySelectorAll('.square');
+            squares.forEach((box) => {
+                box.classList.add('fade-out');
+                
+            })
+            setTimeout(() => {
+            inputplayer1.classList.remove('hide');
+            inputplayer1.value = '';
+            name1.innerText = '';
+            inputplayer2.classList.remove('hide');
+            inputplayer2.value = '';
+            name2.innerText = '';
+            container.innerHTML = '';
+            board = gameBoard.displayBoard();
+            squaresFactory()
+                },1000);
         })
     
+        

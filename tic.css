@@ -79,6 +79,7 @@ section{
     font-size: 5rem;
     color: black;
     cursor: pointer;
+    transition: opacity ease-in-out 1s;
 }
 .square:hover{
     background-color: rgb(214, 214, 214);
@@ -117,4 +118,18 @@ input{
     display: block;
     margin-top: 0.5rem;
     width: 150px;
+}
+
+.after{
+    color: rgb(234, 5, 62);
+    padding-top: 5px;
+}
+.hide{
+    opacity: 0;
+    display: none;
+}
+.fade-out{
+    transition: all linear 1s;
+    opacity: 0;
+    color: red;
 }
