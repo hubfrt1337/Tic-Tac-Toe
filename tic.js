@@ -2,7 +2,6 @@ const mainContainer = document.querySelector('.main-js');
 let score1 = 0;
 let score2 = 0;
 const scoreEl = document.querySelector('.score-js1');
-console.log(scoreEl)
 const scoreEl2 = document.querySelector('.score-js2');
 const gameBoard = (() => {
     const displayBoard = () => {
@@ -34,7 +33,7 @@ let activePlayer = switchPlayer(player1, player2);
 let getPlayer;
 
 function playGame(player, column, row){
-    if(checkWin("O", 'player1') || checkWin("X", "player2")){
+    if(checkWin("O", player1) || checkWin("X", player2)){
         console.log('lol')
         return;
     }
@@ -64,7 +63,6 @@ function switchPlayer(player1, player2){
     }
 }
 const result = document.querySelector('.result');
-console.log(result)
 function showWinner(gracz){
     const inputplayer1 = document.querySelector('.play1-js');
     const inputplayer2 = document.querySelector('.play2-js');
@@ -72,53 +70,55 @@ function showWinner(gracz){
         score1++;
         scoreEl.innerText = score1;
         result.innerText = `${inputplayer1.value} is a winner`;
-    }else{
+        result.classList.add('result-fade');
+        setTimeout(() => {
+            result.classList.remove('result-fade');
+        }, 3000);
+    }else if(gracz.mark == "X"){
         score2++;
         scoreEl2.innerText = score2;
         result.innerText = `${inputplayer2.value} is a winner`;
+        result.classList.add('result-fade');
+        setTimeout(() => {
+            result.classList.remove('result-fade');
+        }, 3000);
     }
 };
 function checkWin(sign, gracz){
         if(board.board[0][0] === sign & board.board[0][1] === sign & board.board[0][2] === sign){
-            console.log(`Wygrywa ${gracz.player}`);
             showWinner(gracz);
             return true;
         } else if(board.board[1][0] === sign & board.board[1][1] === sign & board.board[1][2] === sign){
-            console.log(`Wygrywa ${gracz}`)
+            showWinner(gracz)
             return true;
         } else if(board.board[2][0] === sign & board.board[2][1] === sign & board.board[2][2] === sign){
-            console.log(`Wygrywa ${gracz}`);
+            showWinner(gracz)
             return true;
         } 
         else if(board.board[0][0] === sign & board.board[1][0] === sign & board.board[2][0] === sign){
-            console.log(`Wygrywa ${gracz}`)
+            showWinner(gracz)
             return true;
         } else if(board.board[0][1] === sign & board.board[1][1] === sign & board.board[2][1] === sign){
-            console.log(`Wygrywa  ${gracz}`);
+            showWinner(gracz)
             return true;
         } else if(board.board[0][2] === sign & board.board[1][2] === sign & board.board[2][2] === sign){
-            console.log(`Wygrywa ${gracz}`);
+            showWinner(gracz)
             return true;
         }
         else if(board.board[0][0] === sign & board.board[1][1] === sign & board.board[2][2] === sign){
-            console.log(`Wygrywa ${gracz}`);
+            showWinner(gracz)
             return true;
         } else if(board.board[0][2] === sign & board.board[1][1] === sign & board.board[2][0] === sign){
-            console.log(`Wygrywa ${gracz}`);
+            showWinner(gracz)
             return true;
-        } else{
-            function checkSquare(si){
-                return si == 'X' || si == 'O';
-            }
-            if(board.board[0].every(checkSquare)){
-                console.log('yep')
-            }
+        }
         }
 
-    }
 
     const container = document.querySelector(".container");
-    
+    function checkSquare(si){
+                return si == 'X' || si == 'O';
+            }
     
     function squaresFactory(){
         for(let i = 0; i < 3; i++){
@@ -130,10 +130,18 @@ function checkWin(sign, gracz){
                         if(divEl.innerText === 'X' || divEl.innerText === 'O'){
                             console.log('square already choosen')
                         } else if(checkWin("O", 'player1') || checkWin("X", "player2")){
-                            // - stop koniec gry ktos wygrał,  wys wiadomosc kto wygrał
-                        } else {
+                            console.log('wygrany')
+                        } 
+                        else {
                         playGame(activePlayer, i, j)
                         divEl.innerText = getPlayer.mark;
+                        if(board.board[0].every(checkSquare) & board.board[1].every(checkSquare) & board.board[2].every(checkSquare)){
+                            result.innerText = "It's a draw";
+                            result.classList.add('result-fade');
+                            setTimeout(() => {
+                            result.classList.remove('result-fade');
+                            }, 3000);
+                        }
                         }
                     
                 })
@@ -147,7 +155,6 @@ function checkWin(sign, gracz){
     // 
     // START EVENT START EVENT START EVENT START EVENT
     start.addEventListener('click', () => {
-        console.log(activePlayer)
         const inputplayer1 = document.querySelector('.play1-js');
         const inputplayer2 = document.querySelector('.play2-js');
         const squares = document.querySelectorAll('.square');
@@ -180,6 +187,10 @@ function checkWin(sign, gracz){
     // RESTART EVENT
     const restart = document.querySelector('.restart');
         restart.addEventListener('click', (e) => {
+            score1 = 0;
+            score2 = 0;
+            scoreEl.innerText = score1;
+            scoreEl2.innerText = score2;
             const inputplayer1 = document.querySelector('.play1-js');
             const inputplayer2 = document.querySelector('.play2-js');
             const squares = document.querySelectorAll('.square');
